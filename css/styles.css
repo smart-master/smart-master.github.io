@@ -1,0 +1,355 @@
+:root {
+  --dark   : #787d7b;
+  --accent : #d45500;
+  --light  : #f5f5f5;
+  --font_0 : "Segoe UI", sans-serif;
+  --colof_f: #f5f5f5;
+}
+
+* {
+  margin    : 0;
+  padding   : 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin          : 0;
+  font-family     : var(--font_0);
+  background-color: var(--light);
+  color           : var(--dark);
+  transition      : all 0.3s ease;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+#SITE_CONTAINER {
+  display         : flex;
+  flex-direction  : column;
+  min-height      : 100vh;
+  background-color: var(--colof_f);
+  gap             : 15px;
+}
+
+.container {
+  width    : 90%;
+  max-width: 1200px;
+  margin   : 0 auto;
+}
+
+.header {
+  position              : relative;
+  height                : clamp(220px, 31vw, 350px);
+  width                 : 100%;
+  overflow              : hidden;
+  }
+
+/* паралакс через JS */
+.parallax-bg {
+  position           : absolute;
+  top                : 0;
+  left               : 0;
+  width              : 100%;
+  height             : 350px;
+  background-image   : url('../images/01.header.avif');
+  background-size    : cover;
+  background-position: center;
+  z-index            : 1;
+  transform          : translateY(0);
+  will-change        : transform;
+  filter             : brightness(0.5);
+  object-fit         : cover;
+  object-position    : 50% 50%;
+}
+.logo__link,
+.text_header,
+.header_menu {
+  position         : relative;
+  z-index          : 2;
+}
+
+.logo__link {
+  z-index: 2;
+  padding: 6px;
+}
+
+.logo__link img {
+  width : clamp(100px, 18vw, 140px);
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
+}
+
+.text_header {
+  text-align: center;
+  color     : white;
+  z-index   : 2;
+}
+
+.header_text {
+  line-height: normal;
+  font-size  : clamp(16px, 3vw, 30px);
+}
+.servise_title{
+  padding: 10px 0px;
+}
+.font_0 {
+  font-family      : var(--font_0);
+  font-size        : clamp(25px, 5vw, 50px);
+  font-weight      : bold;
+  line-height      : 1.4em;
+ }
+
+#menu {
+  display        : flex;
+  justify-content: flex-end;
+}
+
+/* Меню */
+.header_menu {
+  position: absolute;
+  top     : 30px;
+  right   : 30px;
+  z-index : 2;
+}
+
+.header_menu-1 {
+  list-style: none;
+  display   : flex;
+  gap       : 20px;
+}
+
+.menu_link {
+  color          : white;
+  text-decoration: none;
+  transition     : color 0.3s;
+  text-transform : uppercase;
+}
+
+.menu_link:hover {
+  color: #ada8a3;
+}
+
+h2 {
+  color: var(--accent);
+}
+
+.services-list {
+  list-style  : disc;
+  padding-left: 1.5em;
+}
+
+/* Галерея */
+.gallery {
+  display              : grid;
+  gap                  : 1em;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  padding-top: 15px;
+}
+
+.gallery img {
+  width        : 100%;
+  border-radius: 8px;
+  object-fit   : cover;
+  box-shadow   : 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Форма */
+form#contactForm {
+  display       : flex;
+  flex-direction: column;
+  gap           : 1em;
+  max-width     : 500px;
+  margin-top    : 1em;
+}
+
+form input,
+form textarea {
+  padding      : 0.8em;
+  border       : 1px solid #ccc;
+  border-radius: 5px;
+  font-family  : inherit;
+  font-size    : 1em;
+}
+
+form button {
+  background-color: var(--accent);
+  color           : white;
+  border          : none;
+  padding         : 0.8em;
+  font-size       : 1em;
+  border-radius   : 5px;
+  cursor          : pointer;
+}
+
+form button:hover {
+  background-color: #b64500;
+}
+
+.site-footer {
+  background-color: var(--dark);
+  color           : white;
+  text-align      : center;
+  padding         : 1em;
+  font-size       : 0.9em;
+}
+
+/* Базові стилі бургер-кнопки */
+.burger {
+  display        : none;
+  flex-direction : column;
+  justify-content: center;
+  gap            : 5px;
+  width          : 30px;
+  height         : 25px;
+  background     : transparent;
+  border         : none;
+  cursor         : pointer;
+  z-index        : 1001;
+  margin-left    : auto;
+}
+
+.burger-line {
+  width           : 100%;
+  height          : 3px;
+  background-color: white;
+  transition      : all 0.3s ease;
+}
+
+/* Активний стан — перетворення на хрестик */
+.burger.active .burger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger.active .burger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active .burger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  #menu {
+    position        : absolute;
+    top             : 100%;
+    right           : 0;
+    left            : 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction  : column;
+    align-items     : flex-start;
+    max-height      : 0;
+    overflow        : hidden;
+    transition      : max-height 0.4s ease, padding 0.3s ease;
+    z-index         : 5;
+    padding         : 0 20px;
+  }
+
+  #menu.active {
+    max-height: 276px;
+    overflow-y: auto;
+    padding   : 20px;
+    position  : absolute;
+    top       : 0;
+    height    : 240px;
+  }
+
+  .burger {
+    display : flex;
+    position: absolute;
+    top     : 35px;
+    right   : 35px;
+  }
+
+  .header_menu {
+    top   : auto;
+    bottom: 20px;
+    right : 20px;
+  }
+
+  .header_menu-1 {
+    flex-direction: column;
+    gap           : 10px;
+    background    : rgba(0, 0, 0, 0.5);
+    padding       : 10px;
+    border-radius : 8px;
+  }
+
+  .header_menu {
+    position        : absolute;
+    top             : 100%;
+    right           : 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction  : column;
+    align-items     : flex-start;
+    width           : 100%;
+    max-height      : 0;
+    overflow        : hidden;
+    transition      : max-height 0.3s ease;
+  }
+
+  .header_menu.active {
+    max-height: 500px;
+    padding   : 20px;
+  }
+
+  .header_menu-1 {
+    flex-direction: column;
+    width         : 100%;
+  }
+
+  .menu_item {
+    padding: 10px 0;
+  }
+
+  .menu_link {
+    color          : white;
+    text-decoration: none;
+  }
+}
+
+/* Кнопка до гори */
+#toTopBtn {
+  position  : fixed;
+  right     : 20px;
+  bottom    : 30px;
+  background: transparent;
+  border    : none;
+  cursor    : pointer;
+  display   : none;
+  z-index   : 999;
+}
+
+#toTopBtn svg {
+  width : 50px;
+  height: 50px;
+}
+
+.form-group {
+  margin-bottom : 1em;
+  display       : flex;
+  flex-direction: column;
+}
+
+.error {
+  color     : red;
+  font-size : 0.9em;
+  margin-top: 0.3em;
+  display   : none;
+}
+
+#formStatus {
+  margin-top : 1em;
+  font-weight: bold;
+}
+
+.contacts_link a{
+  color: var(--dark);
+}
+.contacts_link a:hover{
+  color: var(--accent);
+}

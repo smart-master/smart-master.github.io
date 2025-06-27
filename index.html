@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="./images/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="./images/favicon/favicon.svg" />
+<link rel="shortcut icon" href="./images/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png" />
+<link rel="manifest" href="./images/favicon/site.webmanifest" />
+  <title>SmartMaster</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+  <script src="js/burger.js" defer></script>
+  <script src="js/contactForm.js" defer></script>
+  <script src="js/parallax.js" defer></script>
+</head>
+
+<body>
+  <div id="SITE_CONTAINER">
+    <header class="header">
+      <div class="parallax-bg" data-speed="0.4"></div>
+      <a class="logo__link" href="index.html">
+        <img src="images/logo.01.png" alt="logo" />
+      </a>
+      <div class="text_header">
+        <h1 class="font_0"><span id="typewriter">Stavební firma «SmartMaster»</span></h1>
+        <p class="header_text">Pevná řešení. Od první cihly po střechu.</p>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+      <nav class="header_menu" id="menu">
+        <ul class="header_menu-1">
+          <li class="menu_item"><a class="menu_link" href="#services">Služby</a></li>
+          <li class="menu_item"><a class="menu_link" href="#portfolio">Ukázky prací</a></li>
+          <li class="menu_item"><a class="menu_link" href="#contacts">Kontakt</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container">
+      <section id="services">
+        <h2 class="servise_title">Naše služby</h2>
+        <ul class="services-list">
+          <li>Rekonstrukce bytů a domů</li>
+          <li>Zateplení fasád</li>
+          <li>Výstavba rodinných domů</li>
+          <li>Montáž a opravy střech</li>
+          <li>Vnitřní stavební úpravy</li>
+          <li>Omítky, štukování, malování</li>
+          <li>Obkládání dlažbou</li>
+          <li>Demoliční práce</li>
+        </ul>
+      </section>
+
+      <section id="portfolio">
+        <h2 class="servise_title">Naše práce</h2>
+        <div class="gallery">
+          <img src="./images/work1.avif" alt="Práce 1">
+          <img src="./images/work2.avif" alt="Práce 2">
+          <img src="./images/work3.avif" alt="Práce 3">
+          <img src="./images/work4.avif" alt="Práce 4">
+        </div>
+      </section>
+
+      <section id="contacts">
+        <h2 class="servise_title">Kontakt</h2>
+         <p><strong>Telefon: </strong><span class="contacts_link"><a href="tel:+420775538361">+42 077 553 83 61</a></span></p>
+        <p><strong>Email:</strong> korn7669@gmail.com</p>
+        <p><strong>Adresa:</strong> Korunní 45, Vinohrady (Praha 10), 10100 Praha</p>
+
+        <form id="contactForm" action="https://formspree.io/f/xpwroywo" method="POST" novalidate>
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Vaše jméno" />
+            <small class="error" id="nameError"></small>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email" />
+            <small class="error" id="emailError"></small>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Vaše zpráva"></textarea>
+            <small class="error" id="messageError"></small>
+          </div>
+          <button type="submit">Odeslat</button>
+          <p id="formStatus"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2025 SmartMaster. Všechna práva vyhrazena.</p>
+    </footer>
+  </div>
+
+  <button id="toTopBtn" title="Nahoru">
+    <svg width="24" height="24" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="11" stroke="white" stroke-width="2" fill="#d45500" />
+      <polyline points="8,14 12,10 16,14" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
+       stroke-linejoin="round" />
+    </svg>
+  </button>
+</body>
+
+</html>
