@@ -1,88 +1,78 @@
-// Odeslání formuláře s validací a zprávami
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contactForm");
   const status = document.getElementById("formStatus");
+  const popup = document.getElementById("contactPopup"); // модальне вікно
+
+  const nameField = form.querySelector('[name="name"]');
+  const emailField = form.querySelector('[name="email"]');
+  const messageField = form.querySelector('[name="message"]');
+
+  const nameError = document.getElementById("nameError");
+  const emailError = document.getElementById("emailError");
+  const messageError = document.getElementById("messageError");
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const nameField = form.querySelector('[name="name"]');
-    const emailField = form.querySelector('[name="email"]');
-    const messageField = form.querySelector('[name="message"]');
+    // Очистка попередніх помилок
+    nameError.style.display = emailError.style.display = messageError.style.display = "none";
 
-    const nameError = document.getElementById("nameError");
-    const emailError = document.getElementById("emailError");
-    const messageError = document.getElementById("messageError");
+    let hasError = false;
 
-    // Vymazání předchozích chyb
-    [nameError, emailError, messageError].forEach(el => {
-      el.textContent = "";
-      el.style.display = "none";
-    });
-    status.textContent = "";
-    status.style.color = "";
-
-    // Validace
-    let valid = true;
-
-    const name = nameField.value.trim();
-    const email = emailField.value.trim();
-    const message = messageField.value.trim();
-
-    if (!name) {
-      nameError.textContent = "Zadejte prosím jméno.";
+    if (!nameField.value.trim()) {
+      nameError.textContent = "Zadejte jméno";
       nameError.style.display = "block";
-      valid = false;
-    } else if (name.length < 3) {
-      nameError.textContent = "Jméno musí mít alespoň 3 znaky.";
-      nameError.style.display = "block";
-      valid = false;
+      hasError = true;
     }
 
-    if (!email) {
-      emailError.textContent = "Email je povinný.";
+    if (!emailField.value.trim() || !/\S+@\S+\.\S+/.test(emailField.value)) {
+      emailError.textContent = "Zadejte platný email";
       emailError.style.display = "block";
-      valid = false;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      emailError.textContent = "Zadejte platný e-mail.";
-      emailError.style.display = "block";
-      valid = false;
+      hasError = true;
     }
 
-    if (!message) {
-      messageError.textContent = "Zadejte prosím zprávu.";
+    if (!messageField.value.trim()) {
+      messageError.textContent = "Napište zprávu";
       messageError.style.display = "block";
-      valid = false;
-    } else if (message.length < 5) {
-      messageError.textContent = "Zpráva musí obsahovat alespoň 5 znaků.";
-      messageError.style.display = "block";
-      valid = false;
+      hasError = true;
     }
 
-    if (!valid) return;
+    if (hasError) return;
 
-    // Odeslání formuláře
+    // Відправлення даних
     const formData = new FormData(form);
 
     try {
-      const res = await fetch(form.action, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-        },
+      const response = await fetch(form.action, {
+        method: form.method,
         body: formData,
+        headers: { 'Accept': 'application/json' }
       });
 
-      if (res.ok) {
-        status.textContent = "Děkujeme! Vaše zpráva byla úspěšně odeslána.";
+      if (response.ok) {
+        status.textContent = "Zpráva byla úspěšně odeslána.";
         status.style.color = "green";
         form.reset();
+
+        // ⏳ Закриття форми через 4 секунди
+        setTimeout(() => {
+          popup.classList.add("hidden");
+          document.body.classList.remove("no-scroll");
+          status.textContent = ""; // Очистити повідомлення
+        }, 4000);
+
       } else {
-        status.textContent = "Chyba při odesílání. Zkuste to prosím později.";
+        const data = await response.json();
+        if (data.errors) {
+          status.textContent = data.errors.map(err => err.message).join(", ");
+        } else {
+          status.textContent = "Nastala chyba při odesílání.";
+        }
         status.style.color = "red";
       }
-    } catch (err) {
-      status.textContent = "Nelze se spojit se serverem. Zkuste to později.";
+
+    } catch (error) {
+      status.textContent = "Došlo k síťové chybě.";
       status.style.color = "red";
     }
   });

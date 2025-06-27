@@ -353,3 +353,57 @@ form button:hover {
 .contacts_link a:hover{
   color: var(--accent);
 }
+
+/* Кнопка */
+.contact-btn {
+  padding         : 0.8em 1.2em;
+  background-color: var(--accent);
+  color           : white;
+  border          : none;
+  border-radius   : 5px;
+  cursor          : pointer;
+  font-size       : 1em;
+  margin          : 1em auto;
+  display         : block;
+}
+
+/* Модальне вікно */
+.contact-popup {
+  position        : fixed;
+  top             : 0;
+  left            : 0;
+  width           : 100vw;
+  height          : 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  z-index         : 9999;
+  transition      : opacity 0.3s ease;
+}
+
+/* Внутрішній контейнер */
+.popup-inner {
+  background-color: white;
+  padding         : 2em;
+  border-radius   : 10px;
+  max-width       : 500px;
+  width           : 90%;
+  position        : relative;
+}
+
+/* Кнопка закриття */
+.close-btn {
+  position        : absolute;
+  top             : 10px;
+  right           : 10px;
+  background      : transparent;
+  border          : none;
+  font-size       : 1.5em;
+  cursor          : pointer;
+}
+
+/* Приховане модальне */
+.hidden {
+  display: none;
+}

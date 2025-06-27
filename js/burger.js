@@ -30,3 +30,27 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const openBtn = document.getElementById("openFormBtn");
+  const popup = document.getElementById("contactPopup");
+  const closeBtn = document.getElementById("closeFormBtn");
+
+  openBtn.addEventListener("click", () => {
+    popup.classList.remove("hidden");
+    document.body.classList.add("no-scroll");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    popup.classList.add("hidden");
+    document.body.classList.remove("no-scroll");
+  });
+
+  // Закриття по кліку поза формою
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) {
+      popup.classList.add("hidden");
+      document.body.classList.remove("no-scroll");
+    }
+  });
+});

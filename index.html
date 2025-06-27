@@ -5,10 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="./images/favicon/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="./images/favicon/favicon.svg" />
-<link rel="shortcut icon" href="./images/favicon/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png" />
-<link rel="manifest" href="./images/favicon/site.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="./images/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="./images/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="./images/favicon/site.webmanifest" />
   <title>SmartMaster</title>
   <link rel="stylesheet" href="./css/styles.css" />
   <script src="js/burger.js" defer></script>
@@ -67,9 +67,34 @@
 
       <section id="contacts">
         <h2 class="servise_title">Kontakt</h2>
-         <p><strong>Telefon: </strong><span class="contacts_link"><a href="tel:+420775538361">+42 077 553 83 61</a></span></p>
+        <p><strong>Telefon: </strong><span class="contacts_link"><a href="tel:+420775538361">+42 077 553 83
+              61</a></span></p>
         <p><strong>Email:</strong> korn7669@gmail.com</p>
         <p><strong>Adresa:</strong> Korunní 45, Vinohrady (Praha 10), 10100 Praha</p>
+
+        <!-- <form id="contactForm" action="https://formspree.io/f/xpwroywo" method="POST" novalidate>
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Vaše jméno" />
+            <small class="error" id="nameError"></small>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email" />
+            <small class="error" id="emailError"></small>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Vaše zpráva"></textarea>
+            <small class="error" id="messageError"></small>
+          </div>
+          <button type="submit">Odeslat</button>
+          <p id="formStatus"></p>
+        </form> -->
+        <!-- Кнопка відкриття форми -->
+        <button id="openFormBtn" class="contact-btn">Kontaktujte nás</button>
+    </main>
+    <!-- Контейнер форми (захований) -->
+    <div id="contactPopup" class="contact-popup hidden">
+      <div class="popup-inner">
+        <button id="closeFormBtn" class="close-btn">&times;</button>
 
         <form id="contactForm" action="https://formspree.io/f/xpwroywo" method="POST" novalidate>
           <div class="form-group">
@@ -87,8 +112,10 @@
           <button type="submit">Odeslat</button>
           <p id="formStatus"></p>
         </form>
-      </section>
-    </main>
+      </div>
+    </div>
+    </section>
+
 
     <footer class="site-footer">
       <p>© 2025 SmartMaster. Všechna práva vyhrazena.</p>
